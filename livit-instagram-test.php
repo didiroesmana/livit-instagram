@@ -44,7 +44,7 @@ add_action('admin_menu', 'livit_instagram_plugin_menu');
 function livit_instagram_settings_page() {?>
 <div class="wrap">
 <h2>Livit Instagram Settings Page</h2>
-<a href="<?php echo getLoginUrl()?>">Get Access Token</a> 
+<a href="<?php echo getLoginUrl()."?"?>">Get Access Token</a> 
 <form method="post" action="options.php">
 <?php settings_fields( 'livit-instagram-plugin-settings-group' ); ?>
 <?php do_settings_sections( 'livit-instagram-plugin-settings-group' ); ?>
@@ -68,6 +68,7 @@ function livit_instagram_settings_page() {?>
 </table>
 <?php submit_button(); ?>
 </form>
+<p>Set Your Callback url to <?php echo plugins_url('livit-callback.php',__FILE__ )?></p>
 </div>
 <?php
 } 
