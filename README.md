@@ -12,3 +12,9 @@ Installation
 3. Enter client id and client secret in Livit Instagram Settings, follow the instructions for creating your own client for Instagram.
 4. Add [instalivit user="user1,user2" hashtag="hashtag1,hashtag2"] shortcode in post/page
 
+
+=======================
+Plugins used
+=======================
+1. Masonry https://github.com/desandro/masonry
+2. JQuery WebRating https://github.com/PiyushRamuka/jquery.WebRating
