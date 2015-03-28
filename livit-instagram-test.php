@@ -20,7 +20,7 @@ function livit_plugin_activated(){
 	$livitDB = new LivitDatabase();
 	$livitDB->create_database();
 	$page = get_page_by_title( 'instagram' );
-	if (isset($page)) {
+	// if (isset($page)) {
 		if ($page->post_title != 'instagram' ) {
 			$my_page = array(
 			  'post_title'    => 'instagram',
@@ -32,7 +32,7 @@ function livit_plugin_activated(){
 			);
 			wp_insert_post( $my_page );
 		}
-	}
+	// }
 }
 
 function livit_instagram_plugin_menu() {
