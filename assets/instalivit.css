@@ -1,0 +1,94 @@
+
+ul.masonry-container {
+ padding:5px;
+}
+
+li.instagram-item {
+ border:5px solid #eaeaea;
+ /*margin-top:10px;*/
+ list-style: none;
+}
+li.instagram-item:nth-child(1n+0) {
+ width: 20%;
+}
+li.instagram-item:nth-child(2n+0) {
+ width: 40%;
+}
+li.intagram-item:nth-child(3n+0){
+ width: 10%;
+}
+
+/*untuk responsive image*/
+li.instagram-item img {
+ width:100%;
+ height:auto;
+}
+
+.instagram-page img.media {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 10px;
+}
+
+p.username-instagram {
+	font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+
+.instagram-page .comment-insta {
+	margin-top: 20px;
+}
+
+.instagram .content {
+	display: none;
+}
+.entry-content {
+	min-width: 90% !important;
+}
+
+.starOn {
+    background: linear-gradient(to bottom, rgba(254, 252, 234, 1) 0%, rgba(241, 218, 54, 1) 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.starOff {
+    background: linear-gradient(to bottom, rgba(206, 220, 231, 1) 0%, rgba(89, 106, 114, 1) 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.starOnHover {
+    background: linear-gradient(to bottom, rgba(213, 206, 166, 1) 0%, rgba(201, 193, 144, 1) 23%, rgba(183, 173, 112, 1) 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.starOffHover {
+    background-color: #c03;
+}
+.heartOn {
+    background: linear-gradient(to bottom, rgba(255, 48, 25, 1) 0%, rgba(207, 4, 4, 1) 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.heartOff {
+    background: linear-gradient(to bottom, rgba(212, 228, 239, 1) 0%, rgba(134, 174, 204, 1) 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.heartOnHover {
+    background: linear-gradient(to bottom, rgba(252, 30, 30, 1) 0%, rgba(254, 144, 144, 1) 84%, rgba(254, 187, 187, 1) 99%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.heartOffHover {
+    background: linear-gradient(to bottom, rgba(125, 126, 125, 1) 4%, rgba(14, 14, 14, 1) 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.smileOn {
+    background: linear-gradient(to bottom, rgba(249, 198, 103, 1) 0%, rgba(247, 150, 33, 1) 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.smileOff {
+    background: linear-gradient(to bottom, rgba(89, 106, 114, 1) 0%, rgba(206, 220, 231, 1) 100%, rgba(206, 220, 231, 1) 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+.comment_form input.input-field {
+	width: 100%;
+}
+
+.livit-comment-user {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.fancybox-inner h3 {
+	margin-top: 0;
+}
