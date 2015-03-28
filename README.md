@@ -18,3 +18,4 @@ Plugins used
 =======================
 1. Masonry https://github.com/desandro/masonry
 2. JQuery WebRating https://github.com/PiyushRamuka/jquery.WebRating
+3. Instagram PHP API V2 https://github.com/cosenary/Instagram-PHP-API
