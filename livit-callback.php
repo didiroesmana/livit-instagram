@@ -17,7 +17,7 @@ if (isset($code)){
 		'apiCallback' => $call_back
 	));
 	$data = $instagram->getOAuthToken($code);
-	update_option('access_token',$data->access_token);
+	update_option('livit_access_token',$data->access_token);
 	header('Location: '.admin_url('admin.php?page=livit-instagram-settings'));
 } else {
 	die('wazzup bro?');
