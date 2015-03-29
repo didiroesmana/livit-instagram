@@ -135,13 +135,12 @@ function displayDetailPage($id){
 function instagram_content_filter( $content ) {
 
    if (isset($_GET['ig']) ) {
-   	$instagram_media_id = $_GET['ig'];
-   }	
-
-   if ( is_page( 'instagram' && $instagram_media_id != '' ) ) {
-		$content = '';
-		$content .= displayDetailPage($instagram_media_id);
-   } 
+	   	$instagram_media_id = $_GET['ig'];
+	   	if ( is_page( 'instagram' ) && $instagram_media_id != '' ) {
+	   			$content = '';
+	   			$content .= displayDetailPage($instagram_media_id);
+	   	}
+   }
 
    return $content;
 }
