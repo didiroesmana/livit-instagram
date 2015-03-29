@@ -138,13 +138,9 @@ function instagram_content_filter( $content ) {
    	$instagram_media_id = $_GET['ig'];
    }	
 
-   if ( is_page( 'instagram' ) ) {
-   		//getDisplayFeed($id);
+   if ( is_page( 'instagram' && $instagram_media_id != '' ) ) {
 		$content = '';
 		$content .= displayDetailPage($instagram_media_id);
-		$content .= '';
-		// echo $content;
-
    } 
 
    return $content;
@@ -159,7 +155,7 @@ function countMediaTags($medias,$tag){
 			$count++;
 		}
 	}
-	// print_r($count);
+	
 	if ( $count > 0 ) 
 		return true;
 	else false;
@@ -169,14 +165,13 @@ function getDisplayFeed($username,$tag=false){
 	$id = lookup_user_id($username);
 	$medias = $instagram->getUserMedia($id);
 	if (countMediaTags($medias->data,$tag) == false ) { $tag=false;}
-	// echo count($medias->data);
+	
 	$content="";
 	$livitDB = new LivitDatabase();
 	foreach ($medias->data as $media) {
-		// print_r($media->tags);
+		
 		// check if media has specified tags
 		if (in_arrayi($tag,$media->tags) or $tag === false){
-			// print_r($media);
 
 			$livitDB->insert_media_id($media->id);
 			$content .= "<li class='instagram-item'>";
@@ -305,24 +300,6 @@ function init_instagram(){
 	));
 	if ($access_token != '' ) {
 		$instagram->setAccessToken($access_token);
-	} 
-	return $instagram;
-}
-
-function set_access_token($instagram,$access_token){
-	
-	$code = $access_token;
-	// authentication in progress?
-	if (isset($code)) {
-		// receive and store OAuth token
-		$data = $instagram->getOAuthToken($code);
-		$token = $data->access_token;
-		$instagram->setAccessToken($token);
-	} else {
-		// check whether an error occurred
-		if (isset($_GET['error'])) {
-		echo 'An error occurred: ' . $_GET['error_description'];
-		}
 	} 
 	return $instagram;
 }
