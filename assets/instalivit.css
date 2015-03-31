@@ -7,15 +7,19 @@ li.instagram-item {
  border:5px solid #eaeaea;
  /*margin-top:10px;*/
  list-style: none;
+ float: left;
 }
-li.instagram-item:nth-child(1n+0) {
+li.instagram-item.medium {
  width: 20%;
 }
-li.instagram-item:nth-child(2n+0) {
+li.instagram-item.large {
  width: 40%;
 }
-li.intagram-item:nth-child(3n+0){
+li.intagram-item.small{
  width: 10%;
+}
+li.intagram-item.sm{
+ width: 30%;
 }
 
 /*untuk responsive image*/

@@ -20,19 +20,17 @@ function livit_plugin_activated(){
 	$livitDB = new LivitDatabase();
 	$livitDB->create_database();
 	$page = get_page_by_title( 'instagram' );
-	// if (isset($page)) {
-		if ($page->post_title != 'instagram' ) {
-			$my_page = array(
-			  'post_title'    => 'instagram',
-			  'post_content'  => '',
-			  'post_status'   => 'publish',
-			  'post_author'   => 1,
-			  'post_type'   => 'page',
-			  'comment_status' => 'closed',
-			);
-			wp_insert_post( $my_page );
-		}
-	// }
+	if ($page->post_title != 'instagram' ) {
+		$my_page = array(
+		  'post_title'    => 'instagram',
+		  'post_content'  => '',
+		  'post_status'   => 'publish',
+		  'post_author'   => 1,
+		  'post_type'   => 'page',
+		  'comment_status' => 'closed',
+		);
+		wp_insert_post( $my_page );
+	}
 }
 
 function livit_instagram_plugin_menu() {
@@ -159,12 +157,18 @@ function countMediaTags($medias,$tag){
 		return true;
 	else false;
 }
-function getDisplayFeed($username,$tag=false){
+
+function getDisplayFeed($username=false,$tag=false){
 	$instagram = init_instagram();
 	$id = lookup_user_id($username);
-	$medias = $instagram->getUserMedia($id);
-	if (countMediaTags($medias->data,$tag) == false ) { $tag=false;}
-	
+	if ($username == false && $tag != false ) {
+		$medias = $instagram->getTagMedia($tag);
+	} else {
+		$medias = $instagram->getUserMedia($id);
+		if (countMediaTags($medias->data,$tag) == false ) { $tag=false;}
+	}
+	$feedClass =  array( 1 => 'small',2 => 'medium',3 => 'large' , 4 => 'sm' );
+	//prepare the content
 	$content="";
 	$livitDB = new LivitDatabase();
 	foreach ($medias->data as $media) {
@@ -173,7 +177,8 @@ function getDisplayFeed($username,$tag=false){
 		if (in_arrayi($tag,$media->tags) or $tag === false){
 
 			$livitDB->insert_media_id($media->id);
-			$content .= "<li class='instagram-item'>";
+
+			$content .= "<li class='instagram-item {$feedClass[rand(1,4)]}'>";
 			// output media
 			if ($media->type === 'video') {
 			// video
@@ -315,19 +320,30 @@ function in_arrayi($needle, $haystack) {
 
 function display_feed_shortcode($atts,$content=null){
 	$a = shortcode_atts( array(
-	    'user' => 'didileeee',
-	    'hashtag' => 'haphap',
+	    'user' => 'insta_default',
+	    'hashtag' => 'insta_default',
+	    'limit' => '20'
 	), $atts );
 	$users = explode(",", $a['user']);
-	$hashtag = explode(",", $a['hashtag']);
+	$hashtags = explode(",", $a['hashtag']);
 	$content = '<div class="instagram"><ul id="container-masonry" class="masonry-container" >';
-	foreach ($users as $key => $value) {
-		if (isset($hashtag[$key])){
-			$content .= getDisplayFeed($value,$hashtag[$key]);
-		} else {
-			$content .= getDisplayFeed($value,false);
+	if (!in_arrayi('insta_default',$users) && !in_arrayi('insta_default',$hashtags)) {
+		foreach ($users as $key => $value) {
+			if (isset($hashtag[$key])){
+				$content .= getDisplayFeed($value,$hashtags[$key]);
+			} else {
+				$content .= getDisplayFeed($value,false);
+			}
+			
 		}
-		
+	} elseif (!in_arrayi('insta_default',$users) && in_arrayi('insta_default',$hashtags)) {
+		foreach ($users as $key => $value) {
+			$content .= getDisplayFeed($value,false);	
+		}
+	} elseif (in_arrayi('insta_default',$users) && !in_arrayi('insta_default',$hashtags)){
+		foreach ($hashtags as $key => $value) {
+			$content .= getDisplayFeed(false,$value);	
+		}
 	}
 	$content .= '</ul></div>';
 	$content .= '<script>'.init_web_rating().'</script>';
